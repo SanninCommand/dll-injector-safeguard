@@ -1,0 +1,1 @@
+"""Safety processors. Each processor is a pure function Job+Facts -> StageResult."""
