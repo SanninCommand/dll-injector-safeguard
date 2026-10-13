@@ -1,0 +1,67 @@
+# Default safety-check configuration for dll-injector-safeguard.
+# Every processor reads its own section. Anything set to `true` runs;
+# disabling a check logs a WARNING at startup so it shows up in audit.
+
+pipeline:
+  fail_fast: true
+  emit_telemetry: true
+  max_job_age_seconds: 30
+
+processors:
+  target_alive:
+    enabled: true
+    refresh_snapshot_ms: 250
+
+  arch_match:
+    enabled: true
+    allow_wow64_bridge: false
+
+  dll_signature:
+    enabled: true
+    require_signed: true
+    trusted_publishers:
+      - "Microsoft Windows"
+      - "Microsoft Corporation"
+    allow_catalog_signed: true
+
+  path_allowlist:
+    enabled: true
+    # Empty list = deny all. Add absolute paths you trust.
+    allowed_roots: []
+    resolve_symlinks: true
+    reject_unc: true
+
+  privilege_check:
+    enabled: true
+    require_se_debug: true
+    auto_elevate: false
+
+  protected_process_guard:
+    enabled: true
+    deny_system_processes: true
+    denied_names:
+      - "lsass.exe"
+      - "csrss.exe"
+      - "services.exe"
+      - "wininit.exe"
+      - "smss.exe"
+      - "MsMpEng.exe"
+
+drivers:
+  default_backend: "createremotethread"
+  backends:
+    createremotethread:
+      wait_for_load: true
+      timeout_ms: 5000
+    queueuserapc:
+      require_alertable_thread: true
+      timeout_ms: 5000
+    sethooksex:
+      hook_scope: "thread"
+      timeout_ms: 8000
+
+telemetry:
+  log_dir: "logs"
+  level: "INFO"
+  json_events: true
+  redact_paths: false
