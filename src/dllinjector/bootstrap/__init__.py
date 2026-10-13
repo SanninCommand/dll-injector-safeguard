@@ -1,0 +1,1 @@
+"""Bootstrap layer: CLI entry, config loading, and job construction."""
