@@ -1,0 +1,50 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+wheels/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# Injected artifacts / local runs
+*.log
+logs/
+reports/
+artifacts/
+*.dmp
+*.etl
+*.evtx
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Local config with machine-specific paths
+config/local.yaml
+config/*.local.yaml
