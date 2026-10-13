@@ -1,0 +1,1 @@
+"""Pydantic models for jobs, config, and pipeline results."""
