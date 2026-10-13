@@ -1,0 +1,1 @@
+"""Ingest handlers: normalize raw inputs into pipeline-ready facts."""
